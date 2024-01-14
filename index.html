@@ -7,12 +7,18 @@
     <title>Digimon gallery</title>
 </head>
 <style>
+    :root {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
     .digi-gallery {
         border: 1px solid grey;
         border-collapse: collapse;
     }
     .digi-gallery tr, td {
         border: 1px solid grey;
+    }
+    .digi-gallery tr:hover {
+        background: #00000020;
     }
     .digi-gallery td {
         text-align: center;
@@ -34,6 +40,7 @@
                 <td>DV</td>
                 <td>DV tall</td>
                 <td>sprites</td>
+                <td>spr small</td>
                 <td>overworld</td>
                 <td>Xros</td>
                 <td>V Bracelet</td>
@@ -53,6 +60,7 @@ const columns = [
     "digivice",
     "digivice_tall",
     "sprites",
+    "sprites_small",
     "ow",
     "xros_loader",
     "vital_bracelet"
@@ -87,6 +95,7 @@ function generateDigimonRow (digimon) {
     $tr.append(generateDigimonCell(digimon, "digivice"));
     $tr.append(generateDigimonCell(digimon, "digivice_tall"));
     $tr.append(generateDigimonCell(digimon, "sprites"));
+    $tr.append(generateDigimonCell(digimon, "sprites_small"));
     $tr.append(generateDigimonCell(digimon, "ow"));
     $tr.append(generateDigimonCell(digimon, "xros_loader"));
     $tr.append(generateDigimonCell(digimon, "vital_bracelet"));
@@ -112,22 +121,52 @@ const digimon = [
     {
         "data": {
             "name": "Agumon",
-            "year": "1997"
+            "year": 1997
         },
         "bandai": ["bandai/agumon.jpg"],
         "toei": ["toei/agumon.png"],
         "vpet": ["vpet/agumon.gif", "vpet/agumon_pendulum.gif"],
         "digivice": ["digivice/agumon.gif"],
         "digivice_tall": ["digivice_tall/agumon.gif"],
-        "sprites": ["story/agumon.png", "adventure_02/agumon.png", "d_project/agumon.png"],
-        "ow": ["story/agumon_ow.png", "adventure_02/agumon_ow.png", "championship/togemon.png"],
+        "sprites": ["story/agumon.png", "adventure_02/agumon.png"],
+        "ow": ["story/agumon_ow.png", "adventure_02/agumon_ow.png", "championship/togemon.png", "d_project/agumon.png"],
         "xros_loader": ["xros_loader/agumon.png"],
-        "vital_bracelet": ["vital_bracelet/agumon.png"],
+        "vital_bracelet": ["vb/agumon.png"],
+    },{
+        "data": {
+            "name": "Airdramon",
+            "year": 1997
+        },
+        "bandai": ["bandai/airdramon.jpg"],
+        "toei": ["toei/airdramon.gif"],
+        "vpet": ["vpet/airdramon.gif"],
+        "digivice": ["digivice/airdramon_window.gif"],
+        "digivice_tall": ["digivice_tall/airdramon.gif"],
+        "sprites": ["story/airdramon.png", "adventure_02/airdramon.png"],
+        "sprites_small": ["monster_s/airdramon.png"],
+        "ow": ["story/airdramon_ow.png", "adventure_02/airdramon_ow.png", "championship/airdramon.png"],
+        "xros_loader": ["xros_loader/airdramon.png"],
+        "vital_bracelet": ["vb/airdramon.png"],
+    },{
+        "data": {
+            "name": "Angemon",
+            "year": 1997
+        },
+        "bandai": ["bandai/angemon.jpg"],
+        "toei": ["toei/angemon.gif"],
+        "vpet": ["vpet/angemon.gif", "vpet/angemon_pendulum.gif"],
+        "digivice": ["digivice/angemon.gif", "digivice/angemon_window.gif"],
+        "digivice_tall": ["digivice_tall/angemon.gif"],
+        "sprites": ["story/angemon.png", "adventure_02/angemon.png"],
+        "sprites_small": ["monster_s/angemon.png"],
+        "ow": ["story/angemon_ow.png", "adventure_02/angemon_ow.png", "championship/angemon.png", "d_project/angemon.png"],
+        "xros_loader": ["xros_loader/angemon.png"],
+        "vital_bracelet": ["vb/angemon.png"],
     },
     {
         "data": {
             "name": "Togemon",
-            "year": "1999"
+            "year": 1999
         },
         "bandai": ["bandai/togemon.jpg"],
         "toei": ["toei/togemon.gif"],
@@ -137,7 +176,7 @@ const digimon = [
         "sprites": ["story/togemon.png", "adventure_02/togemon.png"],
         "ow": ["story/togemon_ow.png", "adventure_02/togemon_ow.gif", "championship/togemon.png"],
         "xros_loader": ["xros_loader/togemon.png"],
-        "vital_bracelet": ["vital_bracelet/togemon.png"],
+        "vital_bracelet": ["vb/togemon.png"],
     }
 ];
 
