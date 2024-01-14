@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digimon gallery</title>
+</head>
+<style>
+    .digi-gallery {
+        border: 1px solid grey;
+        border-collapse: collapse;
+    }
+    .digi-gallery tr, td {
+        border: 1px solid grey;
+    }
+    .digi-gallery td {
+        text-align: center;
+    }
+    .digi-gallery img {
+        max-width: 300px;
+        max-height: 300px;
+    }
+</style>
+<body>
+    <h1>Gallery</h1>
+    <table class="digi-gallery">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Bandai</td>
+                <td>Toei</td>
+                <td>vpet</td>
+                <td>DV</td>
+                <td>DV tall</td>
+                <td>sprites</td>
+                <td>overworld</td>
+                <td>Xros</td>
+                <td>V Bracelet</td>
+            </tr>
+        </thead>
+        <tbody id="digi-gallery-body">
+            
+        </tbody>
+    </table>
+</body>
+<script>
+
+const columns = [
+    "bandai",
+    "toei",
+    "vpet",
+    "digivice",
+    "digivice_tall",
+    "sprites",
+    "ow",
+    "xros_loader",
+    "vital_bracelet"
+];
+
+function buildTable () {
+    const $frag = document.createDocumentFragment();
+
+    for (const d of digimon) {
+        const $tr = generateDigimonRow(d);
+        $frag.append($tr);
+    }
+
+    document.getElementById("digi-gallery-body").appendChild($frag);
+}
+
+function generateDigimonRow (digimon) {
+    const $tr = document.createElement("tr");
+
+    if (!digimon.data) console.error("digimon missing data", digimon);
+
+    //debugger
+    const $nameTd = document.createElement("td");
+    const $nameSpan = document.createElement("span");
+    $nameSpan.innerText = digimon.data.name;
+    $nameTd.appendChild($nameSpan);
+
+    $tr.append($nameTd);
+    $tr.append(generateDigimonCell(digimon, "bandai"));
+    $tr.append(generateDigimonCell(digimon, "toei"));
+    $tr.append(generateDigimonCell(digimon, "vpet"));
+    $tr.append(generateDigimonCell(digimon, "digivice"));
+    $tr.append(generateDigimonCell(digimon, "digivice_tall"));
+    $tr.append(generateDigimonCell(digimon, "sprites"));
+    $tr.append(generateDigimonCell(digimon, "ow"));
+    $tr.append(generateDigimonCell(digimon, "xros_loader"));
+    $tr.append(generateDigimonCell(digimon, "vital_bracelet"));
+
+    return $tr;
+}
+
+function generateDigimonCell (digimon, colId) {
+    const $td = document.createElement("td");
+
+    if (digimon[colId]) {
+        for (const imgPath of digimon[colId]) {
+            const $img = document.createElement("img")
+            $img.src = "sprites/" + imgPath;
+            $td.append($img);
+        }
+    }
+
+    return $td;
+}
+
+const digimon = [
+    {
+        "data": {
+            "name": "Agumon",
+            "year": "1997"
+        },
+        "bandai": ["bandai/agumon.jpg"],
+        "toei": ["toei/agumon.png"],
+        "vpet": ["vpet/agumon.gif", "vpet/agumon_pendulum.gif"],
+        "digivice": ["digivice/agumon.gif"],
+        "digivice_tall": ["digivice_tall/agumon.gif"],
+        "sprites": ["story/agumon.png", "adventure_02/agumon.png", "d_project/agumon.png"],
+        "ow": ["story/agumon_ow.png", "adventure_02/agumon_ow.png", "championship/togemon.png"],
+        "xros_loader": ["xros_loader/agumon.png"],
+        "vital_bracelet": ["vital_bracelet/agumon.png"],
+    },
+    {
+        "data": {
+            "name": "Togemon",
+            "year": "1999"
+        },
+        "bandai": ["bandai/togemon.jpg"],
+        "toei": ["toei/togemon.gif"],
+        "vpet": ["vpet/togemon.gif"],
+        "digivice": [],
+        "digivice_tall": ["digivice_tall/togemon.gif"],
+        "sprites": ["story/togemon.png", "adventure_02/togemon.png"],
+        "ow": ["story/togemon_ow.png", "adventure_02/togemon_ow.gif", "championship/togemon.png"],
+        "xros_loader": ["xros_loader/togemon.png"],
+        "vital_bracelet": ["vital_bracelet/togemon.png"],
+    }
+];
+
+buildTable();
+
+</script>
+</html>
